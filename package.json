@@ -1,0 +1,7 @@
+{
+ "name": "testes-pe",
+ "main": "index.js",
+ "scripts": {
+   "test": "npx cypress open"
+ }
+}
