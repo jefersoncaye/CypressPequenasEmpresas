@@ -25,6 +25,7 @@ describe ('testes cadastro de usuarios', () =>{
         cy.get('#CNPJ_IMPORTACAO').type('79.011.862/0003-31');
         cy.get('#ext-gen1589').click();
         cy.get('#NR_CPFCNPJ').should('have.value', '79011862000331');
+        cy.get('#Cidade_LblSelecionado').should('be.visible');
     })
     
 })
