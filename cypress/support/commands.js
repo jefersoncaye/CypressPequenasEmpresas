@@ -1,25 +1,14 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+// Realiza o Login no PE
+Cypress.Commands.add('loginPE', (email, password, empresa) =>{
+        Cypress.on('uncaught:exception', (err, runnable) => {
+                return false;
+            });
+    
+        cy.get('#TxtEmail').type((email), {log: false})
+        cy.get('#TxtSenha').type((password), {log: false})
+        cy.get('#BtnLogin').click()
+        cy.get('div[id="'+empresa+'"]').click()
+        cy.contains('button', 'Selecionar').click()
+        cy.intercept('POST', 'https://pe.questor.com.br/Cadastro/Forms/Menu').as('waitMenuCadastros')
+        cy.wait('@waitMenuCadastros').its('response.statusCode').should('eq', 200)
+})

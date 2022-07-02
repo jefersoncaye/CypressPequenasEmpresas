@@ -2,6 +2,10 @@
  "name": "testes-pe",
  "main": "index.js",
  "scripts": {
-   "test": "npx cypress open"
+  "test": "npx cypress open"
+ },
+ "devDependencies": {
+  "cypress": "^10.3.0",
+  "cypress-iframe": "^1.0.1"
  }
 }
